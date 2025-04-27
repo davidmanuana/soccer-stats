@@ -9,7 +9,22 @@ int main() {
         return 1;
     }
     
-    printf("Loaded %d players\n", count);
+    int choice;
+    do {
+        showMenu();
+        scanf("%d", &choice);
+        
+        switch(choice) {
+            case 1:
+                printf("Search coming soon!\n");
+                break;
+            case 2:
+                printf("Goodbye!\n");
+                break;
+            default:
+                printf("Invalid choice\n");
+        }
+    } while (choice != 2);
     
     freePlayers(players);
     return 0;

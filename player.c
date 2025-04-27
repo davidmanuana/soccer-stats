@@ -36,3 +36,9 @@ Player* loadPlayers(const char* filename, int* count) {
 void freePlayers(Player* players) {
     free(players);
 }
+
+void showMenu() {
+    printf("\n1. Search player\n");
+    printf("2. Exit\n");
+    printf("Choose option: ");
+}
