@@ -32,6 +32,9 @@ int main() {
                     printf("%d. %s - %d goals\n", i+1, p->name, p->goals);
             }
             break;
+            case 4:
+                savePlayers(players, count, "updated_stats.csv");
+                 break;
         }
     } while (choice != 2);
     

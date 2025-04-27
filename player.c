@@ -40,8 +40,9 @@ void freePlayers(Player* players) {
 void showMenu() {
     printf("\n1. Search player\n");
     printf("2. Exit\n");
-    printf("Choose option: ");
     printf("3. Show top scorers\n");
+    printf("4. Save to file\n");
+    printf("Choose option: \n");
 }
 void searchPlayer(Player* players, int count) {
     char name[50];
@@ -78,4 +79,23 @@ void sortByGoals(Player* players, int count) {
             }
         }
     }
+}
+void savePlayers(Player* players, int count, const char* filename) {
+    FILE* file = fopen(filename, "w");
+    if (!file) {
+        printf("Error creating file\n");
+        return;
+    }
+    
+    fprintf(file, "Name,Team,Position,Goals,Assists\n");
+    Player *p = players;
+    while (p < players + count) {
+        fprintf(file, "%s,%s,%s,%d,%d\n",
+               p->name, p->team, p->position,
+               p->goals, p->assists);
+        p++;
+    }
+    
+    fclose(file);
+    printf("Saved %d players to %s\n", count, filename);
 }
