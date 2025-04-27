@@ -9,7 +9,12 @@ typedef struct {
     int assists;
 } Player;
 
+
+// Function declaration
 Player* loadPlayers(const char* filename, int* count);
 void freePlayers(Player* players);
+void showMenu();
+void searchPlayer(Player* players, int count);
+void sortByGoals(Player* players, int count);
 
 #endif

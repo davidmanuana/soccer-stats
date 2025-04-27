@@ -41,6 +41,7 @@ void showMenu() {
     printf("\n1. Search player\n");
     printf("2. Exit\n");
     printf("Choose option: ");
+    printf("3. Show top scorers\n");
 }
 void searchPlayer(Player* players, int count) {
     char name[50];
@@ -64,5 +65,17 @@ void searchPlayer(Player* players, int count) {
     
     if (!found) {
         printf("Player not found\n");
+    }
+}
+void sortByGoals(Player* players, int count) {
+    Player *p, *end;
+    for (end = players + count - 1; end > players; end--) {
+        for (p = players; p < end; p++) {
+            if (p->goals < (p+1)->goals) {
+                Player temp = *p;
+                *p = *(p+1);
+                *(p+1) = temp;
+            }
+        }
     }
 }

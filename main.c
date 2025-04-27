@@ -23,6 +23,15 @@ int main() {
                 break;
             default:
                 printf("Invalid choice\n");
+
+            case 3:
+                sortByGoals(players, count);
+                printf("\nTop Scorers:\n");
+                Player *p = players;
+                 for (int i = 0; i < 5 && i < count; i++, p++) {
+                    printf("%d. %s - %d goals\n", i+1, p->name, p->goals);
+            }
+            break;
         }
     } while (choice != 2);
     
