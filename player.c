@@ -42,3 +42,20 @@ void showMenu() {
     printf("2. Exit\n");
     printf("Choose option: ");
 }
+void searchPlayer(Player* players, int count) {
+    char name[50];
+    printf("Enter player name: ");
+    scanf(" %49[^\n]", name);
+    
+    for (int i = 0; i < count; i++) {
+        if (strstr(players[i].name, name) != NULL) {
+            printf("\nPlayer found:\n");
+            printf("Name: %s\n", players[i].name);
+            printf("Team: %s\n", players[i].team);
+            printf("Position: %s\n", players[i].position);
+            printf("Goals: %d, Assists: %d\n", players[i].goals, players[i].assists);
+            return;
+        }
+    }
+    printf("Player not found\n");
+}

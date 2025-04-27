@@ -16,7 +16,7 @@ int main() {
         
         switch(choice) {
             case 1:
-                printf("Search coming soon!\n");
+                searchPlayer(players, count);
                 break;
             case 2:
                 printf("Goodbye!\n");
