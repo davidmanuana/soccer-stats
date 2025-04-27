@@ -47,15 +47,22 @@ void searchPlayer(Player* players, int count) {
     printf("Enter player name: ");
     scanf(" %49[^\n]", name);
     
-    for (int i = 0; i < count; i++) {
-        if (strstr(players[i].name, name) != NULL) {
+    Player *p = players; // Pointer to first element
+    int found = 0;
+    
+    while (p < players + count) { // Pointer comparison
+        if (strstr(p->name, name) != NULL) {
             printf("\nPlayer found:\n");
-            printf("Name: %s\n", players[i].name);
-            printf("Team: %s\n", players[i].team);
-            printf("Position: %s\n", players[i].position);
-            printf("Goals: %d, Assists: %d\n", players[i].goals, players[i].assists);
-            return;
+            printf("Name: %s\n", p->name);
+            printf("Team: %s\n", p->team);
+            printf("Position: %s\n", p->position);
+            printf("Goals: %d, Assists: %d\n", p->goals, p->assists);
+            found = 1;
         }
+        p++; // Pointer increment
     }
-    printf("Player not found\n");
+    
+    if (!found) {
+        printf("Player not found\n");
+    }
 }
