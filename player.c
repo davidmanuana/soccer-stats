@@ -3,6 +3,7 @@
 #include <string.h>
 #include "player.h"
 
+// Load players from CSV file
 Player* loadPlayers(const char* filename, int* count) {
     FILE* file = fopen(filename, "r");
     if (!file) {
@@ -32,18 +33,21 @@ Player* loadPlayers(const char* filename, int* count) {
     fclose(file);
     return players;
 }
-
+// Free player memory
 void freePlayers(Player* players) {
     free(players);
 }
-
+// Show menu options
 void showMenu() {
-    printf("\n1. Search player\n");
-    printf("2. Exit\n");
-    printf("3. Show top scorers\n");
-    printf("4. Save to file\n");
-    printf("Choose option: \n");
+    printf("\n--- Soccer Stats Menu ---\n");
+    printf("1. Search player\n");
+    printf("2. Show top scorers\n");
+    printf("3. Save to file\n");
+    printf("4. Add new player\n");  
+    printf("5. Exit\n");            
+    printf("Choose option: ");
 }
+// Search for player by name
 void searchPlayer(Player* players, int count) {
     char name[50];
     printf("Enter player name: ");
@@ -68,6 +72,7 @@ void searchPlayer(Player* players, int count) {
         printf("Player not found\n");
     }
 }
+// Sort players by goals (high to low)
 void sortByGoals(Player* players, int count) {
     Player *p, *end;
     for (end = players + count - 1; end > players; end--) {
@@ -80,6 +85,7 @@ void sortByGoals(Player* players, int count) {
         }
     }
 }
+// Save all players to CSV file
 void savePlayers(Player* players, int count, const char* filename) {
     FILE* file = fopen(filename, "w");
     if (!file) {
@@ -98,4 +104,29 @@ void savePlayers(Player* players, int count, const char* filename) {
     
     fclose(file);
     printf("Saved %d players to %s\n", count, filename);
+}
+// Add new player to database
+void addPlayer(Player** players, int* count) {
+    
+    *players = realloc(*players, (*count + 1) * sizeof(Player));
+    
+    printf("\n--- Add New Player ---\n");
+    
+    printf("Name: ");
+    scanf(" %49[^\n]", (*players)[*count].name);
+    
+    printf("Team: ");
+    scanf(" %49[^\n]", (*players)[*count].team);
+    
+    printf("Position: ");
+    scanf(" %19[^\n]", (*players)[*count].position);
+    
+    printf("Goals: ");
+    scanf("%d", &(*players)[*count].goals);
+    
+    printf("Assists: ");
+    scanf("%d", &(*players)[*count].assists);
+    
+    (*count)++;
+    printf("Added successfully!\n");
 }

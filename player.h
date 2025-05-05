@@ -17,5 +17,5 @@ void showMenu();
 void searchPlayer(Player* players, int count);
 void sortByGoals(Player* players, int count);
 void savePlayers(Player* players, int count, const char* filename);
-
+void addPlayer(Player** players, int* count); 
 #endif
